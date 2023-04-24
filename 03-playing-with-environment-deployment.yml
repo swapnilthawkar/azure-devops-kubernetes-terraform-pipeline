@@ -28,7 +28,7 @@ stages:
           - script: echo deploy to Dev
 - stage: QADeploy
   jobs:
-  - deployment: devDeployJob
+  - deployment: QADeployJob
     environment: QA
     strategy:
       runOnce:
