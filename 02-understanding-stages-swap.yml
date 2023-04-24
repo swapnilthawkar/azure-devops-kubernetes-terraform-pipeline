@@ -22,20 +22,20 @@ stages:
     - bash: node --version
     - bash: python --version
     - bash: mvn -version
+    - bash: ls -R $(Build.ArtifactStagingDirectry)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectry)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectry)'
+    - bash: ls -R $(Build.ArtifactStagingDirectry)
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-    # - bash: ls -R $(Build.ArtifactStagingDirectry)
-    # - task: CopyFiles@2
-    #   inputs:
-    #     SourceFolder: '$(System.DefaultWorkingDirectry)'
-    #     Contents: |
-    #       **/*.yaml
-    #       **/*.tf
-    #     TargetFolder: '$(Build.ArtifactStagingDirectry)'
-    # - bash: ls -R $(Build.ArtifactStagingDirectry)
   # - job: SecondJob
   #   steps:
   #   - bash: echo build SecondJob  
