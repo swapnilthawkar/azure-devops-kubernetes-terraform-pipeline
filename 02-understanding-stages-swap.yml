@@ -14,28 +14,28 @@ stages:
     - bash: echo $(Build.BuildNumber)
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourcesDirectry)
-    - bash: echo $(System.DefaultWorkingDirectry)
-    - bash: ls -R $(System.DefaultWorkingDirectry)
-    - bash: echo $(Build.ArtifactStagingDirectry)
+    - bash: echo $(Build.SourcesDirectory)
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
     - bash: java -version
     - bash: node --version
     - bash: python --version
     - bash: mvn -version
-    - bash: ls -R $(Build.ArtifactStagingDirectry)
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectry)'
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
         Contents: |
           **/*.yaml
           **/*.tf
-        TargetFolder: '$(Build.ArtifactStagingDirectry)'
-    - bash: ls -R $(Build.ArtifactStagingDirectry)
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'drop'
+    #     publishLocation: 'Container'
   # - job: SecondJob
   #   steps:
   #   - bash: echo build SecondJob  
