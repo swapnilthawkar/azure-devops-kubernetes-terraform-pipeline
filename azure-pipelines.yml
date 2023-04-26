@@ -19,7 +19,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'swapnil-docker-hub'
-        repository: 'swapnil/currency-exchange-devops'
+        repository: 'iswappyy/currency-exchange-devops'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
